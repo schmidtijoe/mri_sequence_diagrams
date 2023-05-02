@@ -84,6 +84,7 @@ class Diagram:
         time_point = self.time_array[utils.array1d_to_value_find_nearest_idx(
             self.time_array, timing_in_ms + duration_in_ms / 2)]
         self.echo_points.append(time_point)
+        self.dash_points.append(time_point)
 
     def add_easy_signal(self, timing_in_ms: float, duration_in_ms: float):
         start_idx, end_idx = utils.get_start_end_idx(self.time_array, timing_in_ms, duration_in_ms)
@@ -135,7 +136,7 @@ class Diagram:
         if 'signal' in which_parts and 'adc' in which_parts:
             num_rows -= 1
         colors = cm.viridis(np.linspace(0, 1, 2 * which_parts.__len__())).reshape((which_parts.__len__(), 2, -1))
-        fig = plt.figure(figsize=(12, num_rows), dpi=dpi)
+        fig = plt.figure(figsize=(10, 0.9*num_rows), dpi=dpi)
         # hr = np.full(num_rows + 1, 10)
         # hr[-1] = 1
         gs = fig.add_gridspec(num_rows, 1)
@@ -254,7 +255,7 @@ class Diagram:
                                   arrowprops=dict(arrowstyle='<->', color='#800000',
                                                   ls='--', alpha=0.7))
                 ax_inter.text(
-                    (self.dash_points[val_idx + 1] - self.dash_points[val_idx]) / 2 + self.dash_points[val_idx],
+                    (self.dash_points[val_idx + 1] - self.dash_points[val_idx]) / 2 + self.dash_points[val_idx] - self.time_array[-1] / 80,
                     0.06,
                     self.dash_annotate,
                     dict(color='#800000')

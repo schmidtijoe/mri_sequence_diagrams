@@ -3,8 +3,8 @@ import logging
 
 
 def main():
-    seq = sequences.flash_dfa()
-    seq.plot(add_magnetization=False, save=f'flash_seq_diagram.png')
+    seq = sequences.mese()
+    seq.plot(add_magnetization=False, save=f'mese_seq_diagram.png')
 
 
 if __name__ == '__main__':
